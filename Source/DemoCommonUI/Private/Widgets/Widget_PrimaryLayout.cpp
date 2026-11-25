@@ -1,7 +1,6 @@
 // 0xKyo
-
-
 #include "Widgets/Widget_PrimaryLayout.h"
+#include "FrontendDebugHelper.h"
 
 UCommonActivatableWidgetContainerBase* UWidget_PrimaryLayout::FindWidgetStackByTag(FGameplayTag InTag) const
 {
@@ -18,6 +17,7 @@ void UWidget_PrimaryLayout::RegisterWidgetStack(UPARAM(meta = (Categories = "Fro
 		if (!RegisteredWidgetStackMap.Contains(InStackTag))
 		{
 			RegisteredWidgetStackMap.Add(InStackTag, InStack);
+			Debug::Print(FString::Printf(TEXT("Registered widget stack with tag %s."), *InStackTag.ToString()));
 		}
 	}
 }
