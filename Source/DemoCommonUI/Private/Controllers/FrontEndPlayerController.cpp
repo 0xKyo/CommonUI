@@ -3,7 +3,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Camera/CameraActor.h"
 
-void AFrontEndPlayerController::OnPossess(APawn* aPawn)
+void AFrontendPlayerController::OnPossess(APawn* aPawn)
 {
 	Super::OnPossess(aPawn);
 

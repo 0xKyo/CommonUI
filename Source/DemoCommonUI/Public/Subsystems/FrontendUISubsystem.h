@@ -9,12 +9,16 @@
 class UWidget_PrimaryLayout;
 struct FGameplayTag;
 class UWidget_ActivatableBase;
+class UFrontendCommonButtonBase;
 
 enum class EAsyncPushWidgetState : uint8
 {
 	OnCreatedBeforePush,
 	AfterPush
 };
+
+// This delegate is used to broadcast when a button's description text is updated
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnButtonDescriptionTextUpdateDelegate, UFrontendCommonButtonBase*, BroadcastingButton, FText, DescriptionText);
 
 UCLASS()
 class DEMOCOMMONUI_API UFrontendUISubsystem : public UGameInstanceSubsystem
@@ -37,7 +41,12 @@ public:
 		TFunction<void(EAsyncPushWidgetState, UWidget_ActivatableBase*)> AsyncPushStateCallback
 	);
 
+	UPROPERTY(BlueprintAssignable)
+	FOnButtonDescriptionTextUpdateDelegate OnButtonDescriptionTextUpdated;
+
 private:
 	UPROPERTY(Transient)
 	UWidget_PrimaryLayout* CreatedPrimaryLayout;
+
+
 };
